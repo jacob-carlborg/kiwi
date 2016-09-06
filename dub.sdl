@@ -1,0 +1,25 @@
+name "kiwi"
+description "A library for writing web services"
+authors "Jacob Carlborg"
+copyright "Copyright © 2016, Jacob Carlborg"
+license "BSL-1.0"
+
+configuration "unittest" {
+  dependency "unit-threaded" version="~>0.6.27"
+
+  sourcePaths "."
+  mainSourceFile "bin/specs.d"
+
+  preBuildCommands "dub run unit-threaded -c gen_ut_main -- -f bin/specs.d"
+
+  targetType "executable"
+  targetPath "bin"
+  targetName "spec"
+}
+
+subPackage {
+  name "core"
+  description "Core and utility functionality of the Kiwi library"
+
+  sourcePaths "src/kiwi/core"
+}
