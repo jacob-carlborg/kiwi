@@ -21,7 +21,28 @@ struct StaticBitArray(size_t length)
             this[index] = value;
     }
 
-    bool opIndexAssign(bool value, size_t index)
+    bool opIndex(size_t index) const pure nothrow
+    in
+    {
+        import std.format : format;
+
+        assert(index < length,
+            format("Index '%s' is out of bounds '%s'", index, length));
+    }
+    body
+    {
+        return cast(bool) bt(bitsPtr, index);
+    }
+
+    bool opIndexAssign(bool value, size_t index) pure nothrow
+    in
+    {
+        import std.format : format;
+
+        assert(index < length,
+            format("Index '%s' is out of bounds '%s'", index, length));
+    }
+    body
     {
         if (value)
             bts(bitsPtr, index);
@@ -31,17 +52,20 @@ struct StaticBitArray(size_t length)
         return value;
     }
 
-    bool element(size_t index)() // const @nogc pure nothrow
+    bool element(size_t index)() const @nogc pure nothrow
+    in
     {
         import std.format : format;
 
         static assert(index < length,
             format("Index '%s' is out of bounds '%s'", index, length));
-
+    }
+    body
+    {
         return cast(bool) bt(bitsPtr, index);
     }
 
-    bool element(size_t index)(bool value) // const @nogc pure nothrow
+    bool element(size_t index)(bool value) @nogc pure nothrow
     in
     {
         import std.format : format;
@@ -59,8 +83,8 @@ struct StaticBitArray(size_t length)
         return value;
     }
 
-    private size_t* bitsPtr() @trusted @nogc pure nothrow
+    private inout(size_t)* bitsPtr() @trusted @nogc pure nothrow inout
     {
-        return cast(size_t*) bits.ptr;
+        return cast(inout(size_t)*) bits.ptr;
     }
 }

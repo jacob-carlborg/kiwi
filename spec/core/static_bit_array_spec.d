@@ -37,6 +37,47 @@ import kiwi.core.static_bit_array;
         }
     }
 
+    @describe("this[size_t]")
+    {
+        @it("gets the element at the specified index") unittest
+        {
+            auto array = StaticBitArray!(1)(true);
+            array[0].shouldBeTrue;
+        }
+
+        @context("when the index is out of bounds")
+        {
+            @it("fails to compile with an assert error") unittest
+            {
+                import core.exception : AssertError;
+
+                StaticBitArray!(1) array;
+                shouldThrow!(AssertError)(array[1]);
+            }
+        }
+    }
+
+    @describe("this[size_t] = bool")
+    {
+        @it("sets the element at the specified index") unittest
+        {
+            StaticBitArray!(1) array;
+            array[0] = true;
+
+            array[0].shouldBeTrue;
+        }
+
+        @context("when the index is out of bounds")
+        {
+            @it("fails to compile with an assert error") unittest
+            {
+                import core.exception : AssertError;
+
+                StaticBitArray!(1) array;
+                shouldThrow!(AssertError)(array[1] = true);
+            }
+        }
+    }
     @describe("element!(size_t)")
     {
         @it("gets the element at the specified index") unittest
