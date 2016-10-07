@@ -127,4 +127,31 @@ import kiwi.core.static_bit_array;
             }
         }
     }
+
+    @describe("all =")
+    {
+        @context("when the given value is 'false'")
+        {
+            @it("it sets all the elements to 'false'") unittest
+            {
+                auto array = StaticBitArray!(2)(true, true);
+                array.all = false;
+                auto result = [array.element!(0), array.element!(1)];
+
+                result.shouldEqual([false, false]);
+            }
+        }
+
+        @context("when the given value is 'true'")
+        {
+            @it("it sets all the elements to 'true'") unittest
+            {
+                StaticBitArray!(2) array;
+                array.all = true;
+                auto result = [array.element!(0), array.element!(1)];
+
+                result.shouldEqual([true, true]);
+            }
+        }
+    }
 }

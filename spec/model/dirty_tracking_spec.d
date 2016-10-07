@@ -86,4 +86,23 @@ import kiwi.model.dirty_tracking;
             }
         }
     }
+
+    @describe("resetChanges")
+    {
+        @it("resets all changes") unittest
+        {
+            struct Foo
+            {
+                mixin DirtyTracking!("foo", "bar");
+            }
+
+            Foo foo;
+            foo.fieldWillChange!("foo");
+            foo.fieldWillChange!("bar");
+            foo.resetChanges();
+
+            foo.fieldHasChanged!("foo").shouldBeFalse;
+            foo.fieldHasChanged!("bar").shouldBeFalse;
+        }
+    }
 }

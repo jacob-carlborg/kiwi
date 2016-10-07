@@ -83,6 +83,11 @@ struct StaticBitArray(size_t length)
         return value;
     }
 
+    void all(bool value) @nogc pure nothrow @safe
+    {
+        bits[] = value ? 0b11111111 : 0b00000000;
+    }
+
     private inout(size_t)* bitsPtr() @trusted @nogc pure nothrow inout
     {
         return cast(inout(size_t)*) bits.ptr;

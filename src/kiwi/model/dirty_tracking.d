@@ -38,4 +38,9 @@ private:
     {
         __changedFields[staticIndexOf!(name, Fields)] = true;
     }
+
+    void resetChanges()
+    {
+        __changedFields.all = false;
+    }
 }
