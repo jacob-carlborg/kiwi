@@ -23,3 +23,8 @@ subPackage {
 
   sourcePaths "src/kiwi/core"
 }
+
+subPackage {
+  name "model"
+  sourcePaths "src/kiwi/model"
+}
