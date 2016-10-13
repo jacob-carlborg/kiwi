@@ -228,6 +228,9 @@ struct FieldWithValue(T, string name, size_t index)
     /// Returns: the index of the field
     enum index = TemplateArgsOf!(typeof(this))[2];
 
+    /// Returns: the type of the field
+    enum type = Type!(typeof(T.tupleof[index]))();
+
     private T* aggregate;
 
     /**
@@ -283,6 +286,37 @@ unittest
     static assert(field.index == 1);
 
     assert(field.value == 3);
+}
+
+/**
+ * This struct represents the type of a field in the reflection API.
+ *
+ * Params:
+ *      T = the type of the field
+ */
+struct Type(T)
+{
+    /// Evaluates to the native D type this struct holds.
+    alias nativeType = T;
+
+    /// Returns: the name of the type
+    enum name = T.stringof;
+}
+
+///
+unittest
+{
+    struct Foo
+    {
+        int foo;
+        int bar;
+    }
+
+    Foo foo;
+    auto type = foo.reflector.fields!("bar").type;
+
+    static assert(type.name == "int");
+    static assert(is(type.nativeType == int));
 }
 
 private template lambdaFilter(alias pred, TList...)

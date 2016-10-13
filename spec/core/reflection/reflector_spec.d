@@ -178,6 +178,23 @@ import kiwi.core.reflection;
         }
     }
 
+    @describe("type")
+    {
+        @it("returns an object representing the type of the field") unittest
+        {
+            struct Foo
+            {
+                int foo;
+                int bar;
+            }
+
+            Foo value;
+            enum type = value.reflector.fields!("bar").type;
+
+            static assert(type == Type!(int)());
+        }
+    }
+
     @describe("value")
     {
         @it("returns the value of the field") unittest
@@ -210,6 +227,25 @@ import kiwi.core.reflection;
             field.value = 5;
 
             value.foo.shouldEqual(5);
+        }
+    }
+}
+
+@describe("Type")
+{
+    @describe("name")
+    {
+        @it("returns the name of the type") unittest
+        {
+            static assert(Type!(int).name == "int");
+        }
+    }
+
+    @describe("nativeType")
+    {
+        @it("evaluates to native D type hold by Type") unittest
+        {
+            static assert(is(Type!(int).nativeType == int));
         }
     }
 }
