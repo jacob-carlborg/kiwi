@@ -46,6 +46,9 @@ string generateSetter(string name)
     auto code = q{
 auto %1$s(typeof(storage.%1$s) %1$s)
 {
+    static if(__traits(compiles, fieldWillChange!("%1$s")))
+        fieldWillChange!("%1$s");
+
     return storage.%1$s = %1$s;
 }
 }.strip;
