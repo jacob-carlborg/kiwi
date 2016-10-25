@@ -115,6 +115,20 @@ Reflector!(T) reflector(T)(ref T value) if (isAggregateType!(T))
     return Reflector!(T)(value);
 }
 
+/**
+ * Creates a new reflector for the given type.
+ *
+ * Params:
+ *      T = the type of the given value. Has to be an aggregate
+ *
+ * Returns: a reflector for the given type.
+ * See_Also: $(REF Reflector, kiwi, core, reflection)
+ */
+Reflector!(T) reflector(T)() if (isAggregateType!(T))
+{
+    return Reflector!(T).init;
+}
+
 unittest
 {
     import std.meta;

@@ -15,6 +15,16 @@ import kiwi.core.reflection;
 
         value.reflector.shouldEqual(Reflector!(Foo)(value));
     }
+
+    @context("when no value is given")
+    {
+        @it("returns a reflector for the given type") unittest
+        {
+            struct Foo {}
+
+            reflector!(Foo).shouldEqual(Reflector!(Foo).init);
+        }
+    }
 }
 
 @describe("Reflector")
