@@ -4,6 +4,8 @@ authors "Jacob Carlborg"
 copyright "Copyright © 2016, Jacob Carlborg"
 license "BSL-1.0"
 
+dependency "string-transform-d" version="~>1.0.0"
+
 configuration "unittest" {
   dependency "unit-threaded" version="~>0.6.27"
 

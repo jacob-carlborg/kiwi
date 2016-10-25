@@ -252,16 +252,8 @@ struct FieldWithValue(T, string name, size_t index)
      *
      * Params:
      *      aggregate = a pointer the aggregate this field belongs to
-     *
-     * Preconditions:
-     *      aggregate = may not be `null`
      */
     this(T* aggregate)
-    in
-    {
-        assert(aggregate !is null, "aggregate is null");
-    }
-    body
     {
         this.aggregate = aggregate;
     }

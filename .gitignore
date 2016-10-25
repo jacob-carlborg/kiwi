@@ -10,3 +10,4 @@ __dummy.html
 *.dll
 bin
 dub.selections.json
+__test__library__
