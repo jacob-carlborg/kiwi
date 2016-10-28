@@ -6,3 +6,8 @@ string escapeValue(string value)
 {
     return value.replace("'", "''");
 }
+
+string escapeTableName(string name)
+{
+    return name.replace(`"`, `""`);
+}

@@ -22,3 +22,22 @@ import kiwi.record.db.escaping;
         }
     }
 }
+
+@describe("escapeTableName")
+{
+    @context(`when the given name contains a "`)
+    {
+        @it("escapes the name") unittest
+        {
+            escapeTableName(`f"oo`).shouldEqual(`f""oo`);
+        }
+    }
+
+    @context(`when the given name does not contain a "`)
+    {
+        @it("returns the name unchanged") unittest
+        {
+            escapeTableName("foo").shouldEqual("foo");
+        }
+    }
+}
