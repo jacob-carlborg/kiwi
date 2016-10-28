@@ -6,6 +6,8 @@ license "BSL-1.0"
 
 dependency "string-transform-d" version="~>1.0.0"
 
+versions "KiwiDatabasePostgres"
+
 configuration "unittest" {
   dependency "unit-threaded" version="~>0.6.27"
 
