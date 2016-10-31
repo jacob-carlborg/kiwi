@@ -11,3 +11,8 @@ string escapeTableName(string name)
 {
     return name.replace(`"`, `""`);
 }
+
+string escapeColumnName(string name)
+{
+    return name.replace(`"`, `""`);
+}

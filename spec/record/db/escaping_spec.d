@@ -41,3 +41,22 @@ import kiwi.record.db.escaping;
         }
     }
 }
+
+@describe("columnTableName")
+{
+    @context(`when the given name contains a "`)
+    {
+        @it("escapes the name") unittest
+        {
+            escapeColumnName(`f"oo`).shouldEqual(`f""oo`);
+        }
+    }
+
+    @context(`when the given name does not contain a "`)
+    {
+        @it("returns the name unchanged") unittest
+        {
+            escapeColumnName("foo").shouldEqual("foo");
+        }
+    }
+}

@@ -12,6 +12,7 @@ bool isInterfaceImplemented()
 {
     checkEscapeValue();
     checkEscapeTableName();
+    checkEscapeColumnName();
 
     return true;
 }
@@ -30,4 +31,12 @@ void checkEscapeTableName()
 
     static assert(result, "The function " ~
         "'string escapeTableName(string)' is not implemented");
+}
+
+void checkEscapeColumnName()
+{
+    enum result = __traits(compiles, { string r = escapeColumnName(""); });
+
+    static assert(result, "The function " ~
+        "'string escapeColumnName(string)' is not implemented");
 }
