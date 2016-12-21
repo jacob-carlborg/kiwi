@@ -38,8 +38,7 @@ string toSql(T)(T value)
     {
         @it(`converts the value to "0"`) unittest
         {
-            byte value = 0;
-            value.toSql.shouldEqual("0");
+            byte(0).toSql.shouldEqual("0");
         }
     }
 
@@ -47,7 +46,6 @@ string toSql(T)(T value)
     {
         @it(`converts the value to "'t'"`) unittest
         {
-            // byte value = 5;
             byte(5).toSql.shouldEqual("5");
         }
     }
@@ -79,6 +77,25 @@ string toSql(T)(T value)
         @it(`converts the value to "'☃'"`) unittest
         {
             '☃'.toSql.shouldEqual("'☃'");
+        }
+    }
+}
+
+@describe("toSql(wchar)")
+{
+    @context(`when a the value is 'a'`)
+    {
+        @it(`converts the value to "'a'"`) unittest
+        {
+            wchar('a').toSql.shouldEqual("'a'");
+        }
+    }
+
+    @context(`when a the value is 'ö'`)
+    {
+        @it(`converts the value to "'ö'"`) unittest
+        {
+            'ö'.toSql.shouldEqual("'ö'");
         }
     }
 }
