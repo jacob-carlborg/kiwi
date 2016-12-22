@@ -18,6 +18,11 @@ template toSql(OutputRange) if (isOutputRange!(OutputRange, string))
         range.formattedWrite("%s", value);
     }
 
+    void toSql(double value, OutputRange range)
+    {
+        range.formattedWrite("%.100g", value);
+    }
+
     // void toSql(T)(T value, OutputRange range) if (isSqlConvertible!T)
     // {
     //     range.formattedWrite("%s", value);

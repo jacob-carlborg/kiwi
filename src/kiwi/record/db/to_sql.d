@@ -20,6 +20,8 @@ bool isInterfaceImplemented()
     checkToSql!(byte);
     checkToSql!(char);
     checkToSql!(dchar);
+    checkToSql!(wchar);
+    checkToSql!(double);
 
     return true;
 }

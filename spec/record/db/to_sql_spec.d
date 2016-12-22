@@ -99,3 +99,37 @@ string toSql(T)(T value)
         }
     }
 }
+
+@describe("toSql(double)")
+{
+    // @context(`when a the value is 0`)
+    // {
+    //     @it(`converts the value to "0"`) unittest
+    //     {
+    //         double(0).toSql.shouldEqual("0");
+    //     }
+    // }
+    //
+    // @context(`when a the value is 0.1`)
+    // {
+    //     @it(`converts the value to "0.1"`) unittest
+    //     {
+    //         double(0.1).toSql.shouldEqual("0.1");
+    //     }
+    // }
+    //
+    // @context(`when a the value is 1_000_000`)
+    // {
+    //     @it(`converts the value to "1000000"`) unittest
+    //     {
+    //         double(1_000_000).toSql.shouldEqual("1000000");
+    //     }
+    // }
+    @context(`when a the value is 0.12345678945678912`)
+    {
+        @it(`converts the value to "0.12345678945678912"`) unittest
+        {
+            double(0.12345678945678912).toSql.shouldEqual("0.12345678945678912");
+        }
+    }
+}
