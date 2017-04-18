@@ -102,34 +102,129 @@ string toSql(T)(T value)
 
 @describe("toSql(double)")
 {
-    // @context(`when a the value is 0`)
-    // {
-    //     @it(`converts the value to "0"`) unittest
-    //     {
-    //         double(0).toSql.shouldEqual("0");
-    //     }
-    // }
-    //
-    // @context(`when a the value is 0.1`)
-    // {
-    //     @it(`converts the value to "0.1"`) unittest
-    //     {
-    //         double(0.1).toSql.shouldEqual("0.1");
-    //     }
-    // }
-    //
-    // @context(`when a the value is 1_000_000`)
-    // {
-    //     @it(`converts the value to "1000000"`) unittest
-    //     {
-    //         double(1_000_000).toSql.shouldEqual("1000000");
-    //     }
-    // }
+    @context(`when a the value is 0`)
+    {
+        @it(`converts the value to "0"`) unittest
+        {
+            double(0).toSql.shouldEqual("0");
+        }
+    }
+
+    @context(`when a the value is 0.1`)
+    {
+        @it(`converts the value to "0.1"`) unittest
+        {
+            double(0.1).toSql.shouldEqual("0.1");
+        }
+    }
+
+    @context(`when a the value is 1_000_000`)
+    {
+        @it(`converts the value to "1000000"`) unittest
+        {
+            double(1_000_000).toSql.shouldEqual("1000000");
+        }
+    }
+
     @context(`when a the value is 0.12345678945678912`)
     {
         @it(`converts the value to "0.12345678945678912"`) unittest
         {
-            double(0.12345678945678912).toSql.shouldEqual("0.12345678945678912");
+            double(0.12345678945678912).toSql.shouldEqual("0.123456789456789");
+        }
+    }
+
+    @context(`when a the value is 0.00005`)
+    {
+        @it(`converts the value to "5e-05"`) unittest
+        {
+            double(0.00005).toSql.shouldEqual("5e-05");
+        }
+    }
+}
+
+@describe("toSql(float)")
+{
+    @context(`when a the value is 0`)
+    {
+        @it(`converts the value to "0"`) unittest
+        {
+            float(0).toSql.shouldEqual("0");
+        }
+    }
+
+    @context(`when a the value is 0.1`)
+    {
+        @it(`converts the value to "0.1"`) unittest
+        {
+            float(0.1).toSql.shouldEqual("0.1");
+        }
+    }
+
+    @context(`when a the value is 1_000_000`)
+    {
+        @it(`converts the value to "1e+06"`) unittest
+        {
+            float(1_000_000).toSql.shouldEqual("1e+06");
+        }
+    }
+
+    @context(`when a the value is 0.123457`)
+    {
+        @it(`converts the value to "0.123457"`) unittest
+        {
+            float(0.123457).toSql.shouldEqual("0.123457");
+        }
+    }
+
+    @context(`when a the value is 0.00005`)
+    {
+        @it(`converts the value to "5e-05"`) unittest
+        {
+            float(0.00005).toSql.shouldEqual("5e-05");
+        }
+    }
+}
+
+@describe("toSql(real)")
+{
+    @context(`when a the value is 0`)
+    {
+        @it(`converts the value to "0"`) unittest
+        {
+            real(0).toSql.shouldEqual("0");
+        }
+    }
+
+    @context(`when a the value is 0.1`)
+    {
+        @it(`converts the value to "0.1"`) unittest
+        {
+            real(0.1).toSql.shouldEqual("0.1");
+        }
+    }
+
+    @context(`when a the value is 1_000_000`)
+    {
+        @it(`converts the value to "1000000"`) unittest
+        {
+            real(1_000_000).toSql.shouldEqual("1000000");
+        }
+    }
+
+    @context(`when a the value is 0.123456789456789121`)
+    {
+        @it(`converts the value to "0.123456789456789121"`) unittest
+        {
+            real(0.123456789456789121).toSql.shouldEqual("0.123456789456789121");
+        }
+    }
+
+    @context(`when a the value is 0.00005`)
+    {
+        @it(`converts the value to "5e-05"`) unittest
+        {
+            real(0.00005).toSql.shouldEqual("5e-05");
         }
     }
 }

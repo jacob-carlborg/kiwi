@@ -1,12 +1,13 @@
 module kiwi.record.db.postgres.to_sql;
 
 import std.range : isOutputRange;
+import std.traits : isFloatingPoint;
 
 import kiwi.record.db.postgres.escaping;
 
 template toSql(OutputRange) if (isOutputRange!(OutputRange, string))
 {
-    import std.format : formattedWrite;
+    import std.format : formattedWrite, format;
 
     void toSql(bool value, OutputRange range)
     {
@@ -17,16 +18,6 @@ template toSql(OutputRange) if (isOutputRange!(OutputRange, string))
     {
         range.formattedWrite("%s", value);
     }
-
-    void toSql(double value, OutputRange range)
-    {
-        range.formattedWrite("%.100g", value);
-    }
-
-    // void toSql(T)(T value, OutputRange range) if (isSqlConvertible!T)
-    // {
-    //     range.formattedWrite("%s", value);
-    // }
 }
 
 void toSql(OutputRange, T)(T value, OutputRange range)
@@ -34,6 +25,15 @@ void toSql(OutputRange, T)(T value, OutputRange range)
 {
     import std.format : formattedWrite;
     range.formattedWrite("'%s'", value);
+}
+
+void toSql(OutputRange, T)(T value, OutputRange range)
+    if (isOutputRange!(OutputRange, string) && isFloatingPoint!T)
+{
+    import std.format : formattedWrite, format;
+
+    enum fmt = format("%%.%sg", T.dig);
+    range.formattedWrite(fmt, value);
 }
 
 private:

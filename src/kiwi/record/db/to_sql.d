@@ -22,6 +22,8 @@ bool isInterfaceImplemented()
     checkToSql!(dchar);
     checkToSql!(wchar);
     checkToSql!(double);
+    checkToSql!(float);
+    checkToSql!(real);
 
     return true;
 }
