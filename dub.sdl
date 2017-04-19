@@ -9,7 +9,7 @@ dependency "string-transform-d" version="~>1.0.0"
 versions "KiwiDatabasePostgres"
 
 configuration "unittest" {
-  dependency "unit-threaded" version="~>0.6.27"
+  dependency "unit-threaded" version="~>0.7.16"
 
   sourcePaths "."
   mainSourceFile "bin/specs.d"

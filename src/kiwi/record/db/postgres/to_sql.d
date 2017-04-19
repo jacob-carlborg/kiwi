@@ -16,7 +16,7 @@ template toSql(OutputRange) if (isOutputRange!(OutputRange, string))
 
     void toSql(byte value, OutputRange range)
     {
-        range.formattedWrite("%s", value);
+        range.formattedWrite!"%s"(value);
     }
 }
 
@@ -24,7 +24,7 @@ void toSql(OutputRange, T)(T value, OutputRange range)
     if (isOutputRange!(OutputRange, string) && convertsToSqlString!T)
 {
     import std.format : formattedWrite;
-    range.formattedWrite("'%s'", value);
+    range.formattedWrite!"'%s'"(value);
 }
 
 void toSql(OutputRange, T)(T value, OutputRange range)
@@ -32,8 +32,8 @@ void toSql(OutputRange, T)(T value, OutputRange range)
 {
     import std.format : formattedWrite, format;
 
-    enum fmt = format("%%.%sg", T.dig);
-    range.formattedWrite(fmt, value);
+    enum fmt = format!"%%.%sg"(T.dig);
+    range.formattedWrite!fmt( value);
 }
 
 private:
