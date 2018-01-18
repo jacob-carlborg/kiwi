@@ -8,7 +8,7 @@ import core.stdc.stdio : printf;
 enum toStringzMaxLength = 5;
 
 immutable(char)* toStringz(in string str,
-    void* buf = alloca(toStringzMaxLength + 1)) pure
+    scope return void* buf = alloca(toStringzMaxLength + 1)) pure
 {
     enum maxLength = toStringzMaxLength;
 
